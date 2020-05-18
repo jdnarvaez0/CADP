@@ -68,7 +68,7 @@ begin
 			nomMax2:= p.nomEsculea;
 		end;
 end;
- 
+
 
 function descomponer(codigo: Integer): Boolean; 
 var
