@@ -51,7 +51,7 @@ end;
 
 procedure cantProcesadoresMulticore(m:microprocesador; var cantProMulticore:Integer);
 begin
-	if (m.cantCore > 1) and ((m.marca = 'intel') or (m.marca = 'AMD')) and (m.vReloj <= 2) then
+	if (m.cantCore > 1) and ((m.marca = 'intel') or (m.marca = 'AMD')) and (m.vReloj >= 2) then
 	begin
 		cantProMulticore:= cantProMulticore + 1;	
 	end;
@@ -60,7 +60,7 @@ end;
 
 var
 	m: microprocesador;
-	max1, max2, cantProMulticore: Integer;
+	max1, max2, cantProMulticore, cant14: Integer;
 	marcaMax1, marcaMax2, marcaActual: str40;
 	
 begin
@@ -75,28 +75,31 @@ begin
 	while (m.cantCore <> 0) do 
 	begin
 		marcaActual:= m.marca;
+		cant14:=0;
 
-		//inciso 1
-			if (m.cantCore > 2) and (m.tamTransistores >= 22) then 
+
+		while (m.marca = marcaActual) and (m.cantCore <> 0) do 
+		begin
+
+			//inciso 1
+			if (m.cantCore > 2) and (m.tamTransistores <= 22) then 
 			begin
 				writeln('La Marca: ', m.marca);
 				writeln('La Linea: ', m.linea);
 			end;
 
-		while (m.marca = marcaActual) do 
-		begin
-
 			//inciso 2
 			if (m.tamTransistores = 14) then 
 			begin
-				mayorCantProcesasores14(marcaActual,max1,max2,marcaMax1, marcaMax2);	
+				cant14:= cant14 + 1;
 			end;
 
 			//inciso 3
 			cantProcesadoresMulticore(m,cantProMulticore);
 		
 			leerProcesador(m);
-		end;					
+		end;	
+			mayorCantProcesasores14(marcaActual,cant14,max1,max2,marcaMax1, marcaMax2); //inciso 2				
 	end;
 
 	writeln('Las dos marcas con mayor cantidad de procesadores con transistores de 14nm son: ', marcaMax1, ' y ', marcaMax2);
