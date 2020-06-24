@@ -150,7 +150,7 @@ begin
 		l:= l^.sig;
 	end;
 	writeln('El nombre de la sonda mas costosa es: ', maxNom);
-	ImprimirVectorContador(c);
+	el (c);
 	writeln('La cantidad de sondas cuya duracion supera la duracion promedio de todas las sondas es: ', contSupera);
 
 end;

@@ -15,7 +15,6 @@ begin
 	act:=pri;
 	ant:=pri;
 
-
 	while (act <> nil) and (valor > act^.num) do 
 	begin
 		ant:= act;
