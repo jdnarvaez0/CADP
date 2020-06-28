@@ -26,8 +26,7 @@ begin
 	begin
 		write('Ingrese el EMAIL: ');
 		readln(email);
-		write
-		('Ingrese el ROL: ');
+		write('Ingrese el ROL: ');
 		readln(rol);
 		write('Ingrese el nombre en la revista en la que participa: ');
 		readln(revistaParticipa);
@@ -126,3 +125,7 @@ begin
 
 	readln();
 end.
+
+program ejercicicio1;
+
+

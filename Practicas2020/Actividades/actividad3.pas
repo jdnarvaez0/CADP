@@ -3,6 +3,7 @@ const
 	dimF = 20;
 type
 	str40 = String[40];
+	rangoCategoria = 1..20;
 
 	producto = record
 		nombre : str40;
@@ -17,7 +18,7 @@ type
 		sig : lista;
 	end;
 
-	vContador = array[1..dimF] of Integer;
+	vContador = array[rangoCategoria] of Integer;
 
 procedure LeerDatos(var p:producto);
 begin
@@ -40,7 +41,7 @@ end;
 
 procedure inicializarVectorContador(var vc:vContador);
 var
-	i: Integer;
+	i: rangoCategoria;
 begin
 	for i := 1 to dimF do 	
 	begin
@@ -64,7 +65,7 @@ var
 begin
 	LeerDatos(p);
 	while (p.categoria <> 999) do 
-	begin
+	beginsubl
 		agregarAdelante(l,p);
 		LeerDatos(p);
 	end;
@@ -74,9 +75,9 @@ end;
 
 procedure imprimirVector(vc:vContador);
 var
-	i: Integer;
+	i: rangoCategoria;
 begin
-	for i := 1 to 20 do 
+	for i := 1 to dimF do 
 	begin
 		writeln('La CATEGORIA: ', i, ' tiene ', vc[i], ' productos ');
 	end;
@@ -122,7 +123,7 @@ begin
 
 	//inciso 1
 	imprimirVector(vc);
-	writeln('---------------------------------------');
+	writeln('--------------------------------------------------------');
 	//inciso 2 
 	writeln('La cantidad de productos que dejan gananacia son: ', cont);
 	//inciso 3

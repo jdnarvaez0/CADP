@@ -39,7 +39,7 @@ begin
 	act:= l;
 	ant:= l;	
 
-	while (l <> nil) and (act^.datos.promedio < a.promedio) do //como hacer para guarlas los alumno en forma decendente?
+	while (l <> nil) and (act^.datos.promedio > a.promedio) do //como hacer para guarlas los alumno en forma decendente?
 	begin
 		ant:=act;
 		act:= act^.sig;
