@@ -9,7 +9,7 @@ type
 		nombre : str40;
 		precioCosto : Real;
 		precioVenta : Real;
-		categoria : Integer; // se pude usar un subrango pero en la comparacion con el while 999 tiene problemas
+		categoria : Integer;
 	end;
 
 	lista = ^nodo;
@@ -65,7 +65,7 @@ var
 begin
 	LeerDatos(p);
 	while (p.categoria <> 999) do 
-	beginsubl
+	begin	
 		agregarAdelante(l,p);
 		LeerDatos(p);
 	end;

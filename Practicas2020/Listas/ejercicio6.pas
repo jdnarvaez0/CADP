@@ -76,7 +76,7 @@ end;
 
 function cumpleh2020(l:lista): Boolean;
 begin
-	cumpleh2020:= l^.datos.costoMantenimientoM < l^.datos.costoConstruccion;
+	cumpleh2020:=  (l^.datos.costoConstruccion <= ( l^.datos.costoMantenimientoM * l^.datos.duracionMision)) and (l^.datos.rangoEspectro <> 1);
 end;
 
 procedure noFinaciados(l2:lista; var cant: Integer; var sumaTotal: Real);
@@ -86,7 +86,7 @@ begin
 	while (l2 <> nil) do 
 	begin
 		cant:= cant + 1;
-		suma:= l2.^datos.costoConstruccion + l2^.datos.costoMantenimientoM;
+		suma:= l2^.datos.costoConstruccion + l2^.datos.costoMantenimientoM;
 		sumaTotal:= sumaTotal + suma;
 		l2:= l2^.sig;
 	end;	
@@ -114,7 +114,7 @@ begin
 		l:= l^.sig;
 	end;
 	noFinaciados(l2,cant,sumaTotal);
-	writeln('La cantidad de sondas que no van hacer financiadas son: ', cant ' y el costo total seria: ', sumaTotal);
+	writeln('La cantidad de sondas que no van hacer financiadas son: ', cant, ' y el costo total seria: ', sumaTotal);
 end;
 
 procedure imprimirLista(l1:lista); //este proceso es solo para imprimir y mirar si esta generando listas;

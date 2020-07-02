@@ -126,6 +126,5 @@ begin
 	readln();
 end.
 
-program ejercicicio1;
 
 
