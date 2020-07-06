@@ -35,6 +35,7 @@ begin
 		readln(edad);
 		write('Ingrese CODIGO DE GENERO: ');
 		readln(codGenero);
+		writeln('------------------------');
 	end;
 end;
 
