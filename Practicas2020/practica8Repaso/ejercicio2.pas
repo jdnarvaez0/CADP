@@ -18,11 +18,10 @@ type
 		sig : lista;
 	end;
 
-	vTabla = array[1..1] of Real;
+	vTabla = array[1..6] of Real;
 
-procedure cargarTabla(var vt:vTabla);
+procedure cargarTabla(var vt:vTabla); // se dispone
 begin
-	vt[1]:= 10.000; //el valor me lo he inventado, no esta en el ejercicio
 end;
 
 procedure leerDatos(var c:cliente);
@@ -72,7 +71,7 @@ begin
 	writeln('APELLIDO: ', l^.datos.apellido);
 	writeln('NOMBRE: ', l^.datos.nombre);
 	writeln('CODIGO POLIZA : ', l^.datos.codPoliza);
-	writeln('MONTO TOTAL MENSUAL: ', l^.datos.montoMensual + vt[1]:4:2);
+	writeln('MONTO TOTAL MENSUAL: ', l^.datos.montoMensual + vt[l^.datos.codPoliza]:4:2);
 	writeln('--------------------------------------');
 end;
 
@@ -82,7 +81,7 @@ var
 begin
 	cont:= 0;
 
-	while (dni <> 0) do 
+	while  ((cont < 2) and (dni <> 0)) do 
 	begin
 		dig:= dni mod 10;
 		if (dig = 9) then 
@@ -92,7 +91,7 @@ begin
 
 		dni:= dni div 10;
 	end;
-	descomponer:= cont = 2;
+	descomponer:= cont >= 2;
 end;
 
 procedure procesarInfo(l:lista; vt:vTabla);
@@ -119,20 +118,17 @@ var
 begin
 	act:= l;
 	ant:= l;
-	while (act <> nil) and (act^.datos.dni <> codElimianar) do
+	while (act^.datos.dni <> codElimianar) do
 	begin
 		ant:= act;
 		act:= act^.sig;	
 	end;
 
-	if (act <> nil) then 
-	begin
 		if (act = l) then
 			l:= l^.sig
 		else
 			ant^.sig:= act^.sig;
 		dispose(act);
-	end;
 end;
 
 var

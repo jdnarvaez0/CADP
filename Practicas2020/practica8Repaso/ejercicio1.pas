@@ -65,9 +65,8 @@ var
 begin
 	repeat
 		leerDatos(p);
-		vc[p.codGenero]:= vc[p.codGenero] + 1;
 		agregarAdelante(l,p);
-	until (p.dni = 1234);
+	until (p.dni = 33555444);
 end;
 
 procedure codMax(vc: vContador; codigo: Integer; var max1,max2: Integer; var codMax1,codMax2: Integer);
@@ -98,7 +97,7 @@ var
 begin
 	par:= 0;
 	imp:= 0;
-	while (dig <> 0) do 	
+	while (dni <> 0) do 	
 	begin
 		dig:= dni mod 10;
 		if ((dig mod 2) = 0 ) then 
@@ -128,10 +127,12 @@ begin
 		if (cumple(l^.datos.dni)) then 
 			conDni:= conDni + 1;
 
-		codMax(vc,l^.datos.codGenero, max1,max2, codMax1,codMax2);
+		vc[l^.datos.codGenero]:= vc[l^.datos.codGenero] + 1;
+		
 
 		l:= l^.sig;
 	end;
+	codMax(vc,l^.datos.codGenero, max1,max2, codMax1,codMax2);
 	writeln('La cantidad de personas cuyo DNI contiene mas digitos pares que impares son: ', conDni);
 	writeln('Los dos codigos de genero mas elegidos son: ', codMax1, ' y ', codMax2);
 end;
@@ -162,7 +163,6 @@ end;
 
 var
 	l: lista;
-	p: persona;
 	vc: vContador;
 	dniE: Integer;
 	ok: Boolean;

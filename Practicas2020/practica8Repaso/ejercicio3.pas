@@ -120,6 +120,8 @@ begin
 		if (l^.datos.kmRecorridos > 5) then
 			insertarOrdenado(l2, l^.datos);
 	end;
+	writeln('El codigo maximo 1 fue: ', codMax1);
+	writeln('El codigo maximo 2 fue: ', codMax2);
 end;
 
 
@@ -131,5 +133,6 @@ begin
 	l2:= nil;
 
 	cargarLista(l);
+	procesarInfo(l,l2);
 	readln();
 end.
