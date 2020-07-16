@@ -134,7 +134,7 @@ begin
 	descomponer:= ok;
 end;
 
-procedure masRapido(a:alumno; calAnios: Integer; var min1,min2: Integer; var nomMin1,nomMin2: String; var apellMin1,apellMin2: String; var mailMin1, mailMin2: String);
+procedure masRapisoSeRecibieron(a:alumno; calAnios: Integer; var min1,min2: Integer; var nomMin1,nomMin2: String; var apellMin1,apellMin2: String; var mailMin1, mailMin2: String);
 begin
 	if (calAnios < min1) then 	
 	begin
@@ -184,7 +184,7 @@ begin
 			cantC:= cantC + 1;
 
 		calAnios:= l^.datos.anioEgreso - l^.datos.anioIngreso;
-		masRapido(l^.datos,calAnios,min1,min2,nomMin1,nomMin2,apellMin1,apellMin2,mailMin1,mailMin2);
+		masRapisoSeRecibieron(l^.datos,calAnios,min1,min2,nomMin1,nomMin2,apellMin1,apellMin2,mailMin1,mailMin2);
 
 
 		l:= l^.sig;
@@ -194,13 +194,44 @@ begin
 	writeln('El segundo alumnos mas rapido se recibio es ', apellMin2, ' ', nomMin2, ' con mail: ', mailMin2);
 end;
 
+procedure eliminar(var l:lista; nAlumno: Integer);
+var
+	ant,act: lista;
+begin
+	if (l <> nil) then 
+	begin
+		ant:= l;
+		act:= l;
+	end;
+
+	while ((act <> nil) and (act^.datos.numAlumno <> nAlumno)) do
+	begin
+		ant:= act;
+		act:= act^.sig;
+	end;
+
+	if (act <> nil) then 
+	begin
+		if (act = l) then 
+			l:= l^.sig;
+	end
+	else
+		ant^.sig:= act^.sig;
+	dispose(act);
+end;
+
 var
 	l: lista;
+	nAlumno: Integer;
 
 begin
 	l:= nil; 
 
 	cargarAlumnos(l);
 	procesarInfo(l);
+
+	writeln('Ingrese el numero de alumon a eliminar: ');
+	readln(nAlumno);
+	eliminar(l,nAlumno);
 
 end.
