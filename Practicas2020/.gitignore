@@ -1,0 +1,5 @@
+# Ignorar archivos generados por la compilación de Pascal
+*.*
+!*/
+!*.pas
+!*[!./]
